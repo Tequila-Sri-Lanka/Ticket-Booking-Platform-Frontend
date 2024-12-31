@@ -37,31 +37,36 @@ async function signIn(credentials) {
 }
 
 // test usage
-(async function demo() {
-  const newUser = {
-    id: 1,
-    name: "John Doe",
-    nic: "123456789V",
-    userName: "johndoe",
-    password: "password123",
-    email: "sachi@gmail.com",
-    role: "ADMIN",
-  };
+// (async function demo() {
+//   const newUser = {
+//     id: 1,
+//     name: "John Doe",
+//     nic: "123456789V",
+//     userName: "johndoe",
+//     password: "password123",
+//     email: "sachi@gmail.com",
+//     role: "ADMIN",
+//   };
 
-    const loginCredentials = {
-      email: "sachi@gmail.com",
-      password: "password123"
-    };
+    // const loginCredentials = {
+    //   email: "sachi@gmail.com",
+    //   password: "password123"
+    // };
 
-  try {
+  // try {
     // Sign up 
-    const signUpResponse = await signUp(newUser);
-    console.log("Sign-Up Response:", signUpResponse);
+    // const signUpResponse = await signUp(newUser);
+    // console.log("Sign-Up Response:", signUpResponse);
 
     // Sign in 
-    const signInResponse = await signIn(loginCredentials);
-    console.log("Sign-In Response:", signInResponse);
-  } catch (error) {
-    console.error("Error in Authentication Flow:", error.message);
-  }
-})();
+   // const signInResponse = await signIn(loginCredentials);
+   // console.log("Sign-In Response:", signInResponse);
+//   } catch (error) {
+//     console.error("Error in Authentication Flow:", error.message);
+//   }
+// })();
+
+export default {
+  signUp,
+  signIn,
+};
