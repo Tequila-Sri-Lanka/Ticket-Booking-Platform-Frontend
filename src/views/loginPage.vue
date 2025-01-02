@@ -54,7 +54,7 @@
         <span class="span">Forgot password?</span>
       </div>
       <button class="button-submit">Sign In</button>
-      <p class="p">Don't have an account? <span class="span">Sign Up</span></p>
+      <p class="p">Don't have an account? <router-link to="/signup" class="span">Sign Up</router-link></p>
       <p class="p line">Or With</p>
 
       <div class="flex-row">

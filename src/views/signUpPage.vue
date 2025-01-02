@@ -147,7 +147,7 @@
         <div class="err-message" id="password-massage"></div>
 
         <button class="button-submit">Sign Up</button>
-        <p class="p">Have an account? <span class="span">Sign In</span></p>
+        <p class="p">Have an account? <router-link to="/signin" class="span">Sign In</router-link></p>
         <p class="p line">Or With</p>
 
         <div class="flex-row">
