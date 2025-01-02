@@ -6,18 +6,7 @@
           <label>User Name </label>
         </div>
         <div id="u-name" class="inputForm">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-          >
-            <g id="Layer_1">
-              <path
-                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-3.87 0-7 2.13-7 4v2h14v-2c0-1.87-3.13-4-7-4z"
-              />
-            </g>
-          </svg>
+         
 
           <input
             placeholder="Enter your User Name"
@@ -31,18 +20,7 @@
           <label>Email </label>
         </div>
         <div id="email" class="inputForm">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            viewBox="0 0 32 32"
-            height="20"
-          >
-            <g data-name="Layer 3" id="Layer_3">
-              <path
-                d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"
-              ></path>
-            </g>
-          </svg>
+         
           <input
             placeholder="Enter your Email"
             class="input"
@@ -56,18 +34,7 @@
           <label>NIC </label>
         </div>
         <div id="nic" class="inputForm">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-          >
-            <g id="Layer_1">
-              <path
-                d="M22 4h-4V3c0-.553-.447-1-1-1H7c-.553 0-1 .447-1 1v1H2c-.553 0-1 .447-1 1v16c0 .553.447 1 1 1h20c.553 0 1-.447 1-1V5c0-.553-.447-1-1-1zm-5 0h-8V3h8v1zm4 16H3V6h18v14z"
-              />
-            </g>
-          </svg>
+         
 
           <input
             placeholder="Enter your NIC"
@@ -81,18 +48,7 @@
           <label>Mobile No </label>
         </div>
         <div id="mobile" class="inputForm">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-          >
-            <g id="Layer_1">
-              <path
-                d="M18 0H6C4.89 0 4 0.89 4 2V22C4 23.1 4.89 24 6 24H18C19.1 24 20 23.1 20 22V2C20 0.89 19.1 0 18 0ZM6 2H18V22H6V2ZM12 21C11.45 21 11 20.55 11 20C11 19.45 11.45 19 12 19C12.55 19 13 19.45 13 20C13 20.55 12.55 21 12 21ZM16 4H8V5H16V4Z"
-              />
-            </g>
-          </svg>
+          
 
           <input
             placeholder="Enter your Mobile Number"
@@ -107,19 +63,7 @@
           <label>Password</label>
         </div>
         <div id="password" class="inputForm">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            viewBox="-64 0 512 512"
-            height="20"
-          >
-            <path
-              d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"
-            ></path>
-            <path
-              d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"
-            ></path>
-          </svg>
+         
           <input
             :type="showPassword ? 'text' : 'password'"
             placeholder="Enter your Password"
