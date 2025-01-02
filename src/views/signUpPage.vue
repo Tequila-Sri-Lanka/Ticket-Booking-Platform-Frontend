@@ -342,7 +342,7 @@ export default {
       };
 
       try {
-        await authStore.signUp(credentials); // Assuming signUp() method exists in authStore
+        await authStore.signUp(credentials);
         if (authStore.isAuthenticated) {
           console.log("Sign in successfully!");
         }
