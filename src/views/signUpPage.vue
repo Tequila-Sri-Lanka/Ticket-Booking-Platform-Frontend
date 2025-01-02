@@ -218,7 +218,7 @@
         </div>
       </form>
     </div>
-    <div class="right-side">hahahaha</div>
+    <div class="right-side"><img class="themeImg" src="/src/assets/theme.jpg" alt=""></div>
   </div>
 </template>
 
@@ -297,6 +297,11 @@ export default {
   overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.themeImg{
+height: 100vh;
+
 }
 
 .form-container {

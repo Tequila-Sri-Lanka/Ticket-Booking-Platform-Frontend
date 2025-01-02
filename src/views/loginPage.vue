@@ -1,5 +1,5 @@
 <template ><div class="main-container">
-  <div class="left-side">hahahaha</div>
+  <div class="left-side"><img class="themeImg" src="/src/assets/theme.jpg" alt=""></div>
   <div class="form-container">
     <form class="form" @submit.prevent="handleLogin">
       <div class="flex-column">
@@ -188,7 +188,11 @@ grid-template-columns: 1fr 1fr;
 
 }
 .left-side{
-  
+  object-fit: cover;
+}
+.themeImg{
+height: 100vh;
+
 }
 .form-container{
   display: flex;
