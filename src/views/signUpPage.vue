@@ -2,23 +2,23 @@
   <div class="main-container">
     <div class="form-container">
       <form class="form" @submit.prevent="handleLogin">
-        
         <div class="flex-column">
           <label>User Name </label>
         </div>
-        <div class="inputForm">
+        <div id="u-name" class="inputForm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
-            viewBox="0 0 32 32"
             height="20"
+            viewBox="0 0 24 24"
           >
-            <g data-name="Layer 3" id="Layer_3">
+            <g id="Layer_1">
               <path
-                d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"
-              ></path>
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM12 14c-3.87 0-7 2.13-7 4v2h14v-2c0-1.87-3.13-4-7-4z"
+              />
             </g>
           </svg>
+
           <input
             placeholder="Enter your User Name"
             class="input"
@@ -26,10 +26,11 @@
             v-model="username"
           />
         </div>
+        <div class="err-message" id="u-name-massage"></div>
         <div class="flex-column">
           <label>Email </label>
         </div>
-        <div class="inputForm">
+        <div id="email" class="inputForm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -49,22 +50,25 @@
             v-model="email"
           />
         </div>
+        <div class="err-message" id="email-massage"></div>
+
         <div class="flex-column">
           <label>NIC </label>
         </div>
-        <div class="inputForm">
+        <div id="nic" class="inputForm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
-            viewBox="0 0 32 32"
             height="20"
+            viewBox="0 0 24 24"
           >
-            <g data-name="Layer 3" id="Layer_3">
+            <g id="Layer_1">
               <path
-                d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"
-              ></path>
+                d="M22 4h-4V3c0-.553-.447-1-1-1H7c-.553 0-1 .447-1 1v1H2c-.553 0-1 .447-1 1v16c0 .553.447 1 1 1h20c.553 0 1-.447 1-1V5c0-.553-.447-1-1-1zm-5 0h-8V3h8v1zm4 16H3V6h18v14z"
+              />
             </g>
           </svg>
+
           <input
             placeholder="Enter your NIC"
             class="input"
@@ -72,10 +76,24 @@
             v-model="nic"
           />
         </div>
+        <div class="err-message" id="nic-massage"></div>
         <div class="flex-column">
           <label>Mobile No </label>
         </div>
-        <div class="inputForm">
+        <div id="mobile" class="inputForm">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+          >
+            <g id="Layer_1">
+              <path
+                d="M18 0H6C4.89 0 4 0.89 4 2V22C4 23.1 4.89 24 6 24H18C19.1 24 20 23.1 20 22V2C20 0.89 19.1 0 18 0ZM6 2H18V22H6V2ZM12 21C11.45 21 11 20.55 11 20C11 19.45 11.45 19 12 19C12.55 19 13 19.45 13 20C13 20.55 12.55 21 12 21ZM16 4H8V5H16V4Z"
+              />
+            </g>
+          </svg>
+
           <input
             placeholder="Enter your Mobile Number"
             class="input"
@@ -83,11 +101,12 @@
             v-model="mobile"
           />
         </div>
+        <div class="err-message" id="mobile-massage"></div>
 
         <div class="flex-column">
           <label>Password</label>
         </div>
-        <div class="inputForm">
+        <div id="password" class="inputForm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -125,6 +144,7 @@
             />
           </svg>
         </div>
+        <div class="err-message" id="password-massage"></div>
 
         <button class="button-submit">Sign Up</button>
         <p class="p">Have an account? <span class="span">Sign In</span></p>
@@ -207,7 +227,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { ref } from "vue";
 import { useAuthStore } from "@/stores/authStore";
@@ -215,79 +234,147 @@ import { useAuthStore } from "@/stores/authStore";
 export default {
   data() {
     return {
+      username: "",
+      email: "",
+      nic: "",
+      mobile: "",
       password: "",
       showPassword: false,
+      loading: false,
     };
   },
+
   methods: {
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
     },
-  },
 
-  setup() {
-    const email = ref("");
-    const password = ref("");
-    const username = ref("");
-    const mobile = ref("");
-    const nic = ref("");
+   
+    validateInputs() {
+      const usernameInput = document.getElementById("u-name");
+      const usernameMessage = document.getElementById("u-name-massage");
+      const emailMessage = document.getElementById("email-massage");
+      const nicMessage = document.getElementById("nic-massage");
+      const mobileMessage = document.getElementById("mobile-massage");
+      const passwordMessage = document.getElementById("password-massage");
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+      const nicInput = document.getElementById("nic");
+      const mobileInput = document.getElementById("mobile");
 
-    const loading = ref(false);
-    const authStore = useAuthStore();
+      if (!this.username || this.username.trim().length === 0) {
+        usernameInput.classList.add("blink-border");
+        usernameMessage.textContent = "Please enter a valid username!";
+        setTimeout(() => {
+          usernameInput.classList.remove("blink-border");
+          usernameMessage.textContent = "";
+        }, 1500);
+        return false;
+      }
+      if (!this.email || !this.validateEmail(this.email)) {
+        emailInput.classList.add("blink-border");
+        emailMessage.textContent = "Please enter a valid email!";
+        setTimeout(() => {
+          emailInput.classList.remove("blink-border");
+          emailMessage.textContent = "";
+        }, 1500);
+        return false;
+      }
+      if (!this.nic || this.nic.trim().length === 0) {
+        nicInput.classList.add("blink-border");
+        nicMessage.textContent = "Please enter a valid NIC number!";
+        setTimeout(() => {
+          nicInput.classList.remove("blink-border");
+          nicMessage.textContent = "";
+        }, 1500);
+        return false;
+      }
+      if (!this.mobile || !this.validateMobile(this.mobile)) {
+        mobileInput.classList.add("blink-border");
+        mobileMessage.textContent = "Please enter a valid mobile number!";
+        setTimeout(() => {
+          mobileInput.classList.remove("blink-border");
+          mobileMessage.textContent = "";
+        }, 1500);
+        return false;
+      }
+      if (!this.password || this.password.length < 6) {
+        passwordInput.classList.add("blink-border");
+        passwordMessage.textContent =
+          "Password must be at least 6 characters!!";
+        setTimeout(() => {
+          passwordInput.classList.remove("blink-border");
+          passwordMessage.textContent = "";
+        }, 1500);
+        return false;
+      }
+      return true;
+    },
 
-    const handleLogin = async () => {
-      if (
-        !email.value ||
-        !password.value ||
-        !username.value ||
-        !mobile.value ||
-        !nic.value
-      ) {
-        alert("Please fill in all fields!");
-        console.log(email.value);
-        console.log(password.value);
-        console.log(username.value);
-        console.log(mobile.value);
-        console.log(nic.value);
+    // Email validation
+    validateEmail(email) {
+      const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      return regex.test(email);
+    },
+
+    // Mobile number validation
+    validateMobile(mobile) {
+      const regex = /^[0-9]{10}$/;
+      return regex.test(mobile);
+    },
+
+    // Handle the login process
+    async handleLogin() {
+      if (!this.validateInputs()) {
         return;
       }
 
-      loading.value = true;
+      this.loading = true;
+      const authStore = useAuthStore();
+
       const credentials = {
-        name: username.value,
-        nic: nic.value,
-        userName: username.value,
-        password: password.value,
-        email: email.value,
-        mobile: mobile.value,
+        name: this.username,
+        nic: this.nic,
+        userName: this.username,
+        password: this.password,
+        email: this.email,
+        mobile: this.mobile,
       };
 
       try {
-        await authStore.signUp(credentials);
+        await authStore.signUp(credentials); // Assuming signUp() method exists in authStore
         if (authStore.isAuthenticated) {
-          console.log("sign in successfully!");
+          console.log("Sign in successfully!");
         }
       } catch (error) {
-        console.error("signIn failed:", error.message);
+        console.error("Sign up failed:", error.message);
       } finally {
-        loading.value = false;
+        this.loading = false;
       }
-    };
-
-    return {
-      email,
-      password,
-      username,
-      mobile,
-      nic,
-      loading,
-      handleLogin,
-    };
+    },
   },
 };
 </script>
 
 <style>
+.err-message {
+  color: rgb(105, 2, 2);
+}
+.blink-border {
+  animation: blinkBorder 0.5s ease-in-out 3; /* Blink 3 times */
+}
+
+@keyframes blinkBorder {
+  0% {
+    border-color: red;
+  }
+  50% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: red;
+  }
+}
 .main-container {
   background: white;
   height: 100vh;
@@ -423,5 +510,9 @@ export default {
 
 .btn:hover {
   border: 1px solid #2d79f3;
+}
+.eye-icon {
+  cursor: pointer;
+  padding: 3px;
 }
 </style>
