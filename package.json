@@ -12,6 +12,7 @@
     "@primevue/forms": "^4.2.5",
     "@primevue/themes": "^4.2.5",
     "axios": "^1.7.9",
+    "jwt-decode": "^4.0.0",
     "pinia": "^2.2.6",
     "primeicons": "^7.0.0",
     "primevue": "^3.5.0",
