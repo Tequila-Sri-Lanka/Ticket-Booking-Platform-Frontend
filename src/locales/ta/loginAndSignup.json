@@ -1,0 +1,16 @@
+{
+    "login": {
+        "titile":  "user login ta",
+        "username": {
+            "placeholder": "Enter your username ta"
+        },
+        "password": {
+            "placeholder":"Enter your password ta"
+        },
+        "remember-me": "remember me ta",
+        "forget-password": "forget password ta",
+        "no-account": "Don't have and account ? ta",
+        "login": "login ta",
+        "sign-up": "Sign Up ta"
+    }
+}

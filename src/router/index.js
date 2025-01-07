@@ -1,5 +1,5 @@
-import LoginPage from '@/views/loginPage.vue'
- import SignUpPage from '@/views/signUpPage.vue'
+import LoginPage from '@/views/LoginPage.vue'
+ import SignUpPage from '@/views/SignUpPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 
