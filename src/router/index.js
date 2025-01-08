@@ -1,28 +1,39 @@
-import Homepage from '@/views/Homepage.vue'
-import LoginPage from '@/views/LoginPage.vue'
-import SignUpPage from '@/views/SignUpPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '@/stores/authStore'
 
-
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
+const routes = [
     {
       path: "/signin",
       name: "signin",
-      component: LoginPage,
+      component: () => import('../views/loginPage.vue'),
     },
     {
       path: "/signup",
       name: "signup",
-      component: SignUpPage,
+      component: () => import('../views/signUpPage.vue'),
     },
     {
-      path: "/homepage",
+      path: "/",
       name: "HomePageVue",
-      component: Homepage,
+      component: () => import('../views/homepage.vue'),
     },
-  ],
-});
+  ]
+
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+router.beforeEach((to, from, next) => {
+  const userAuthStore = useAuthStore()
+  if (!userAuthStore.isAuthenticated && to.path !== '/signin') {
+    next('/signin')
+  } else if (userAuthStore.isAuthenticated && to.path === '/signin') {
+    next('/')
+  } else {
+    next()
+  }
+})
 
 export default router

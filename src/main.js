@@ -20,7 +20,7 @@ import Checkbox from 'primevue/checkbox'
 import InputText from 'primevue/inputtext'
 import FloatLabel from 'primevue/floatlabel'
 import Password from 'primevue/password'
-import Dropdown from 'primevue/dropdown';
+import Dropdown from 'primevue/dropdown'
 
 const i18n = createI18n({
     locale: "en",
