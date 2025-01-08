@@ -1,14 +1,24 @@
 <template>
   <div class="homepage">
     <header class="header">
-      <input type="text" placeholder="Search by movie, event or sport" class="search-bar" />
+      <input
+        type="text"
+        placeholder="Search by movie, event or sport"
+        class="search-bar"
+      />
       <button class="signin-btn">Signin</button>
     </header>
 
     <nav class="navbar">
-      <button class="nav-btn" @click="currentCategory = 'movies'">Movies</button>
-      <button class="nav-btn" @click="currentCategory = 'events'">Events</button>
-      <button class="nav-btn" @click="currentCategory = 'sports'">Sports</button>
+      <button class="nav-btn" @click="currentCategory = 'movies'">
+        Movies
+      </button>
+      <button class="nav-btn" @click="currentCategory = 'events'">
+        Events
+      </button>
+      <button class="nav-btn" @click="currentCategory = 'sports'">
+        Sports
+      </button>
       <button class="nav-btn">Contact</button>
       <button class="nav-btn">Support</button>
     </nav>
@@ -18,10 +28,17 @@
       <a href="#" class="submenu-link">Now Playing</a>
       <a href="#" class="submenu-link">Coming soon</a>
     </div>
+    <hr>
 
     <section class="category-items">
-      <div class="carousel">
-        <div class="item" v-for="item in items[currentCategory]" :key="item.id">
+      <div class="carousel" ref="carousel">
+        <div
+          class="item"
+          v-for="(item, index) in items[currentCategory]"
+          :key="item.id"
+          :class="{ highlighted: highlightedIndex === index }"
+          ref="carouselItems"
+        >
           <img :src="item.image" :alt="item.title" class="item-poster" />
           <h3 class="item-title">{{ item.title }}</h3>
           <p class="item-details">{{ item.details }}</p>
@@ -37,7 +54,8 @@ export default {
   name: "HomePageVue",
   data() {
     return {
-      currentCategory: 'movies',
+      currentCategory: "movies",
+      highlightedIndex: 1,
       items: {
         movies: [
           {
@@ -60,8 +78,8 @@ export default {
             details: "2 hours 30 minutes",
             date: "23rd February 2024",
             image: "src/assets/loginbgr.jpg",
-              },
-                    {
+          },
+          {
             id: 1,
             title: "Sonic 3",
             details: "2 hours 30 minutes",
@@ -81,27 +99,7 @@ export default {
             details: "2 hours 30 minutes",
             date: "23rd February 2024",
             image: "src/assets/loginbgr.jpg",
-          }, {
-            id: 1,
-            title: "Sonic 3",
-            details: "2 hours 30 minutes",
-            date: "23rd February 2024",
-            image: "src/assets/loginbgr.jpg",
           },
-          {
-            id: 2,
-            title: "Mufasa",
-            details: "2 hours 30 minutes",
-            date: "23rd February 2024",
-            image: "src/assets/loginbgr.jpg",
-          },
-          {
-            id: 3,
-            title: "Gladiator 2",
-            details: "2 hours 30 minutes",
-            date: "23rd February 2024",
-            image: "src/assets/loginbgr.jpg",
-              },
         ],
         events: [
           {
@@ -137,38 +135,67 @@ export default {
         ],
       },
     };
-    },
-   mounted() {
-    const carousel = this.$refs.carousel;
-
-    const handleScroll = () => {
-      const cards = carousel.querySelectorAll(".item");
-      const carouselRect = carousel.getBoundingClientRect();
-
-      cards.forEach((card) => {
-        const cardRect = card.getBoundingClientRect();
-        const cardCenter = cardRect.left + cardRect.width / 2;
-        const carouselCenter = carouselRect.left + carouselRect.width / 2;
-        const distance = Math.abs(carouselCenter - cardCenter);
-        const scale = Math.max(1, 1.5 - distance / 300);
-
-        card.style.transform = `scale(${scale})`;
-        card.style.transition = "transform 0.2s";
-      });
+  },
+  mounted() {
+    this.setupObserver();
+  },
+ mounted() {
+  this.setupObserver();
+},
+methods: {
+  setupObserver() {
+    const options = {
+      root: this.$refs.carousel,
+      rootMargin: "100px",
+      threshold: 0.2, // Adjust based on when you want the card to be highlighted
     };
 
+    let lastScrollPosition = 0; // To track the scroll direction
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const index = Array.from(this.$refs.carouselItems).indexOf(entry.target);
+
+        if (entry.isIntersecting) {
+          // Determine scroll direction
+          const currentScrollPosition = this.$refs.carousel.scrollTop;
+          const isScrollingDown = index > lastScrollPosition;
+
+          // Update last scroll position
+          lastScrollPosition = index;
+
+          // Assign based on scroll direction
+          this.highlightedIndex = isScrollingDown ?index-1 :index+1;
+          console.log(`lastscroll: ${lastScrollPosition},,Index: ${index}, Highlighted: ${this.highlightedIndex}`);
+        }
+      });
+    }, options);
+
+    this.$refs.carouselItems.forEach((item) => {
+      observer.observe(item);
+    });
   },
+},
+
 };
 </script>
 
 <style scoped>
+.item.highlighted {
+  transform: scale(1.1); /* Highlighted card becomes larger */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a shadow to emphasize */
+  z-index: 1;
+}
+
 .homepage {
   font-family: Arial, sans-serif;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 10px;
   background-color: #f5f5f5;
@@ -192,8 +219,7 @@ export default {
 
 .navbar {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+ gap: 10px;
   padding: 10px;
   background-color: #e9e9e9;
 }
@@ -207,6 +233,8 @@ export default {
 }
 
 .submenu {
+    display: flex;
+    justify-content: flex-end;
   text-align: center;
   margin: 10px 0;
 }
@@ -219,7 +247,8 @@ export default {
 
 .category-items {
   padding: 20px;
-  overflow: hidden;
+
+
 }
 
 .carousel {
@@ -227,9 +256,10 @@ export default {
   justify-content: space-between;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-gap: 20px;
-  max-width: 650px;
+  gap: 100px;
+ 
   margin: 0 auto;
+  height:700px ;
 }
 
 .carousel::-webkit-scrollbar {
@@ -237,16 +267,19 @@ gap: 20px;
 }
 
 .item {
-
-   flex: 0 0 calc((100% - 40px) / 3);
+  flex: 0 0 calc((100% - 40px) / 3);
   text-align: center;
-  max-width: 200px;
+  
   scroll-snap-align: start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 500px;
+
+ 
 }
 
 .item-poster {
   width: 100%;
-  height: 400px;
+  height: 300px;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
