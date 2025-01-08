@@ -1,5 +1,5 @@
-import { defineStore } from "pinia";
-import SignInSignUpService from "@/service/SignInSignUpService";
+import { defineStore } from "pinia"
+import SignInSignUpService from "@/service/SignInSignUpService"
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -19,51 +19,51 @@ export const useAuthStore = defineStore("auth", {
   }),
   actions: {
     async login(credentials) {
-      this.loading = true;
+      this.loading = true
       try {
-        const response = await SignInSignUpService.signIn(credentials);
+        const response = await SignInSignUpService.signIn(credentials)
 
         if (response.token) {
-          this.isAuthenticated = true;
-          this.token = response.token;
-          this.user = response.user;
-          this.roles = response.user.roles || [];
+          this.isAuthenticated = true
+          this.token = response.token
+          this.user = response.user
+          this.roles = response.user.roles || []
           this.profile = {
             name: response.user.name,
             email: response.user.email,
             avatar: response.user.avatar || "",
-          };
-          localStorage.setItem("authToken", response.token);
+          }
+          localStorage.setItem("authToken", response.token)
         }
       } catch (error) {
-        console.error("Login failed:", error);
-        this.isAuthenticated = false;
-        this.error = error.message;
+        console.error("Login failed:", error)
+        this.isAuthenticated = false
+        this.error = error.message
       } finally {
-        this.loading = false;
+        this.loading = false
       }
     },
 
     async signUp(userDetails) {
-      this.loading = true;
+      this.loading = true
       try {
-        const response = await SignInSignUpService.signUp(userDetails);
+        const response = await SignInSignUpService.signUp(userDetails)
         //sign-up success controll
       } catch (error) {
-        console.error("Sign-Up failed:", error);
-        this.error = error.message;
+        console.error("Sign-Up failed:", error)
+        this.error = error.message
       } finally {
-        this.loading = false;
+        this.loading = false
       }
     },
 
     logout() {
-      this.isAuthenticated = false;
-      this.token = null;
-      this.user = null;
-      this.roles = [];
-      this.profile = { name: "", email: "", avatar: "" };
-      localStorage.removeItem("authToken");
+      this.isAuthenticated = false
+      this.token = null
+      this.user = null
+      this.roles = []
+      this.profile = { name: "", email: "", avatar: "" }
+      localStorage.removeItem("authToken")
     },
   },
-});
+})
