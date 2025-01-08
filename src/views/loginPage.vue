@@ -129,7 +129,7 @@ const handleLogin = async () => {
   }
 
   .blink-border {
-    animation: blinkBorder 0.5s ease-in-out 3; /* Blink 3 times */
+    animation: blinkBorder 0.5s ease-in-out 3;
   }
 
   @keyframes blinkBorder {
@@ -167,6 +167,7 @@ const handleLogin = async () => {
     display: flex;
     flex-direction: column;
     width: 50%;
+    gap: 10px;
     backdrop-filter: blur(10px);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -178,5 +179,13 @@ const handleLogin = async () => {
   .form button {
     align-self: flex-end;
   }
+  .form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+.themeImg {
+  height: 100vh;
+}
 }
 </style>
