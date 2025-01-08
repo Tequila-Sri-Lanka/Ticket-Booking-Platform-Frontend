@@ -1,7 +1,6 @@
 {
-    "logins":"login",
     "login": {
-        "titile":  "user login", 
+        "title":  "user login", 
         "username": {
             "placeholder": "Enter your username"
         },
@@ -9,9 +8,10 @@
             "placeholder":"Enter your password"
         },
         "remember-me": "remember me",
-        "forget-password": "forget password",
+        "forget-password": "forget password ?",
         "no-account": "Don't have and account ?",
         "login": "login",
-        "sign-up": "Sign Up"
+        "sign-up": "Sign Up",
+        "or": "or"
     }
 }

@@ -1,48 +1,47 @@
 <template>
   <div class="login-form-container">
+    <!-- <LanguageSwitcher /> -->
     <div class="left-side">
       <img class="themeImg" src="/src/assets/theme.jpg" alt="Theme Image" />
     </div>
     <div class="form-container">
       <form class="form" @submit.prevent="handleLogin">
         <div class="login-header">
-          <h2>{{ t('logins')}}</h2>
+          <h2>{{ $t("login.title").toUpperCase()}}</h2>
         </div>
         <section class="username-field-container mb-3">
           <FloatLabel variant="on">
             <InputText id="username" v-model="username" :invalid="v$.username.$error" />
-            <label for="username">Enter your username</label>
+            <label for="username">{{ $t("login.username.placeholder")}}</label>
           </FloatLabel>
         </section>
 
         <section class="password-field-container mb-2">
           <FloatLabel variant="on">
             <Password v-model="password" :feedback="false" toggleMask :invalid="v$.password.$error"/>
-            <label for="password">Enter your password</label>
+            <label for="password">{{ $t("login.password.placeholder")}}</label>
           </FloatLabel>
         </section>
 
         <div>
           <Checkbox v-model="rememberMe" binary class="mr-2" />
-          <span >remember me</span>
+          <span >{{ $t("login.remember-me")}}</span>
         </div>
         <div class="mb-2">
-          <span class="span forget-password" @click="forgetPassword">Forgot password?</span>
+          <span class="span forget-password" @click="forgetPassword">{{ $t("login.forget-password")}}</span>
         </div>
         <Button
-          label="LOGIN"
+          :label="$t('login.login').toUpperCase()"
           icon="pi pi-lock"
           iconPos="right"
           class="mb-2"
           @click="handleLogin"
         ></Button>
-        <button @click="changeLanguage('en')">English</button>
-        <button @click="changeLanguage('fr')">Français</button>
         <div class="signup-section">
-          <p>Don't have an account?</p>
-          <router-link to="/signup" class="span">Sign Up</router-link>
+          <p>{{ $t("login.no-account")}}</p>
+          <router-link to="/signup" class="span">{{ $t("login.sign-up")}}</router-link>
         </div>
-        <p class="p line">or</p>
+        <p class="p line">{{ $t("login.or")}}</p>
         <gbutton />
       </form>
     </div>
@@ -54,14 +53,10 @@ import { ref } from "vue";
 import { useAuthStore } from "@/stores/authStore"
 import { useVuelidate } from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
-import { useI18n } from 'vue-i18n'
-import { useI18nStore } from '../stores/i18n'
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import Gbutton from "@/components/Gbutton.vue"
 
 const authStore = useAuthStore();
-const { t } = useI18n();
-const i18nStore = useI18nStore();
-
 const username = ref(null);
 const password = ref(null);
 const rememberMe = ref(false);
@@ -75,10 +70,6 @@ const rules = {
 const v$ = useVuelidate(rules, {
   username, password
 })
-
-function changeLanguage(locale) {
-  i18nStore.setLocale(locale);
-}
 
 const handleLogin = async () => {
   const credentials = {

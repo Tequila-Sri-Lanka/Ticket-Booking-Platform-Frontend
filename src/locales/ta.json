@@ -1,6 +1,6 @@
 {
     "login": {
-        "titile":  "user login ta",
+        "title":  "user login ta",
         "username": {
             "placeholder": "Enter your username ta"
         },
@@ -11,6 +11,7 @@
         "forget-password": "forget password ta",
         "no-account": "Don't have and account ? ta",
         "login": "login ta",
-        "sign-up": "Sign Up ta"
+        "sign-up": "Sign Up ta",
+        "or": "ta"
     }
 }
