@@ -55,6 +55,9 @@ import { useVuelidate } from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import Gbutton from "@/components/Gbutton.vue"
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const authStore = useAuthStore();
 const username = ref(null);
@@ -73,7 +76,7 @@ const v$ = useVuelidate(rules, {
 
 const handleLogin = async () => {
   const credentials = {
-    username: username.value,
+    email: username.value,
     password: password.value,
     rememberMe: rememberMe.value,
   };
@@ -83,6 +86,7 @@ const handleLogin = async () => {
     await authStore.login(credentials);
     if (authStore.isAuthenticated) {
       console.log("Logged in successfully!");
+       router.push('/');
     }
   } catch (error) {
     console.error("Login failed:", error.message);

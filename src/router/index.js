@@ -26,14 +26,20 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const userAuthStore = useAuthStore()
-  if (!userAuthStore.isAuthenticated && to.path !== '/signin') {
-    next('/signin')
-  } else if (userAuthStore.isAuthenticated && to.path === '/signin') {
-    next('/')
+  const userAuthStore = useAuthStore();
+ if (
+    !userAuthStore.isAuthenticated &&
+    !["/signin", "/signup"].includes(to.path)
+  ) {
+    next("/signin");
+  } else if (
+    userAuthStore.isAuthenticated &&
+    ["/signin", "/signup"].includes(to.path)
+  ) {
+    next("/");
   } else {
-    next()
+    next();
   }
-})
+});
 
 export default router
