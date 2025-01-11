@@ -21,6 +21,7 @@ import InputText from 'primevue/inputtext'
 import FloatLabel from 'primevue/floatlabel'
 import Password from 'primevue/password'
 import Dropdown from 'primevue/dropdown'
+import CascadeSelect from "primevue/cascadeselect";
 
 const i18n = createI18n({
     locale: "en",
@@ -41,5 +42,6 @@ app.component('Checkbox', Checkbox)
 app.component('FloatLabel', FloatLabel)
 app.component('Password', Password)
 app.component('Dropdown', Dropdown)
+app.component("Cascadeselect",CascadeSelect);
 
 app.mount("#app")

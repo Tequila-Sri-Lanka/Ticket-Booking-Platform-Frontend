@@ -147,24 +147,23 @@ methods: {
     const options = {
       root: this.$refs.carousel,
       rootMargin: "100px",
-      threshold: 0.2, // Adjust based on when you want the card to be highlighted
+      threshold: 0.2,
     };
 
-    let lastScrollPosition = 0; // To track the scroll direction
+    let lastScrollPosition = 0; 
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const index = Array.from(this.$refs.carouselItems).indexOf(entry.target);
 
         if (entry.isIntersecting) {
-          // Determine scroll direction
+
           const currentScrollPosition = this.$refs.carousel.scrollTop;
           const isScrollingDown = index > lastScrollPosition;
 
-          // Update last scroll position
+          
           lastScrollPosition = index;
 
-          // Assign based on scroll direction
           this.highlightedIndex = isScrollingDown ?index-1 :index+1;
         }
       });
@@ -181,8 +180,7 @@ methods: {
 
 <style scoped>
 .item.highlighted {
-  transform: scale(1.1); /* Highlighted card becomes larger */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a shadow to emphasize */
+  transform: scale(1.2); 
   z-index: 1;
 }
 
@@ -277,8 +275,8 @@ methods: {
 }
 
 .item-poster {
-  width: 100%;
-  height: 300px;
+  width: 300px;
+  height: 500px;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
