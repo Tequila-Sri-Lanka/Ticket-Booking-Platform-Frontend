@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/Ticket-booking/events";
+const API_URL = "http://localhost:8080/Ticket-booking/api/v1/events";
 
 class EventService {
   constructor() {

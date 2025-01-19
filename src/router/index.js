@@ -29,9 +29,11 @@ router.beforeEach((to, from, next) => {
   const userAuthStore = useAuthStore();
  if (
     !userAuthStore.isAuthenticated &&
-    !["/signin", "/signup"].includes(to.path)
+   !["/signin", "/signup"].includes(to.path)
   ) {
-    next("/signin");
+   next("/signin");
+   useAuthStore.logout();
+  
   } else if (
     userAuthStore.isAuthenticated &&
     ["/signin", "/signup"].includes(to.path)
