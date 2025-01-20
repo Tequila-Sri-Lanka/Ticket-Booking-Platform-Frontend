@@ -38,11 +38,12 @@
           :key="item.id"
           :class="{ highlighted: highlightedIndex === index }"
           ref="carouselItems"
+          @click="currentCategory === 'movies' ? goToMovieDetails(item.id) : null"  
         >
-          <img :src="item.image" :alt="item.title" class="item-poster" />
+          <img :src="item.image" :alt="item.image" class="item-poster" />
           <h3 class="item-title">{{ item.title }}</h3>
-          <p class="item-details">{{ item.details }}</p>
-          <p class="item-date">{{ item.date }}</p>
+          <p class="item-details">{{ item.description }}</p>
+          <p class="item-date">{{ item.rating }}</p>
         </div>
       </div>
     </section>
@@ -50,6 +51,9 @@
 </template>
 
 <script>
+
+import movieService from '@/service/movieService';
+
 export default {
   name: "HomePageVue",
   data() {
@@ -57,92 +61,61 @@ export default {
       currentCategory: "movies",
       highlightedIndex: 1,
       items: {
-        movies: [
-          {
+        movies: [ {
             id: 1,
             title: "Sonic 3",
             details: "2 hours 30 minutes",
             date: "23rd February 2024",
             image: "src/assets/loginbgr.jpg",
-          },
-          {
-            id: 2,
-            title: "Mufasa",
-            details: "2 hours 30 minutes",
-            date: "23rd February 2024",
-            image: "src/assets/loginbgr.jpg",
-          },
-          {
-            id: 3,
-            title: "Gladiator 2",
-            details: "2 hours 30 minutes",
-            date: "23rd February 2024",
-            image: "src/assets/loginbgr.jpg",
-          },
-          {
-            id: 1,
-            title: "Sonic 3",
-            details: "2 hours 30 minutes",
-            date: "23rd February 2024",
-            image: "src/assets/loginbgr.jpg",
-          },
-          {
-            id: 2,
-            title: "Mufasa",
-            details: "2 hours 30 minutes",
-            date: "23rd February 2024",
-            image: "src/assets/loginbgr.jpg",
-          },
-          {
-            id: 3,
-            title: "Gladiator 2",
-            details: "2 hours 30 minutes",
-            date: "23rd February 2024",
-            image: "src/assets/loginbgr.jpg",
-          },
-        ],
-        events: [
-          {
-            id: 1,
-            title: "Concert Night",
-            details: "5 hours",
-            date: "10th March 2024",
-            image: "path/to/concert.jpg",
-          },
-          {
-            id: 2,
-            title: "Art Exhibition",
-            details: "All day",
-            date: "15th March 2024",
-            image: "path/to/art.jpg",
-          },
-        ],
-        sports: [
-          {
-            id: 1,
-            title: "Football Match",
-            details: "3 hours",
-            date: "20th March 2024",
-            image: "path/to/football.jpg",
-          },
-          {
-            id: 2,
-            title: "Basketball Finals",
-            details: "2 hours",
-            date: "25th March 2024",
-            image: "path/to/basketball.jpg",
-          },
-        ],
+          },],
+        events: [],
+        sports: [],
       },
     };
   },
+
   mounted() {
-    this.setupObserver();
-  },
- mounted() {
-  this.setupObserver();
+  this.fetchMovies();
+   this.setupObserver();
 },
-methods: {
+  methods: {
+   async fetchMovies() {
+      try {
+        const token = localStorage.getItem('authToken');
+        if (token) {
+          movieService.setToken(token);
+        }
+
+//orginal
+
+        // const movies = await movieService.getAllMovies();
+        // if (movies) {
+        //   this.items.movies = movies;
+        //   console.log("in homepage:",movies)
+        // }
+
+
+//dummy images
+const movies = await movieService.getAllMovies();
+if (movies) {
+  // Set the image URL for each movie
+  this.items.movies = movies.map(movie => ({
+    ...movie,
+    image: "https://picsum.photos/200/300"
+  }));
+
+  console.log("in homepage:", this.items.movies);
+}
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    },
+    goToMovieDetails(movieId) {
+      if (this.currentCategory === 'movies') {
+      console.log(movieId)
+      this.$router.push({ name: 'MovieDetails', params: { id: movieId } });
+    }
+  },
   setupObserver() {
     const options = {
       root: this.$refs.carousel,
@@ -173,6 +146,7 @@ methods: {
       observer.observe(item);
     });
   },
+
 },
 
 };

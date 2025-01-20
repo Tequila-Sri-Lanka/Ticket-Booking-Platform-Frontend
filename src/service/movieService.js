@@ -1,11 +1,10 @@
 import axios from "axios";
 
-const API_URL = "https://www.dev.ticketbooking.tequilasl.com/Ticket-booking/tickets";
+const API_URL = "http://localhost:8080/Ticket-booking/api/v1/movies";
 
-class TicketService {
-    constructor() {
-        
-    this.token =""; // Placeholder for the token
+class MovieService {
+  constructor() {
+    this.token = ""; // Placeholder for the token
   }
 
   setToken(token) {
@@ -20,77 +19,78 @@ class TicketService {
     };
   }
 
-  async createTicket(ticketData) {
+  async createMovie(movieData) {
     try {
       const response = await axios.post(
         API_URL,
-        ticketData,
+        movieData,
         this.getHeaders() // Attach token as header here
       );
-      console.log("Ticket created:", response.data);
+      console.log("movie saved:", response.data);
     } catch (error) {
       console.error(
-        "Error creating ticket:",
+        "Error saving movie:",
         error.response ? error.response.data : error.message
       );
     }
   }
 
-  async getTicketById(id) {
+  async getMovieById(id) {
     try {
       const response = await axios.get(
         `${API_URL}/${id}`,
         this.getHeaders() // Attach token as header here
       );
-      console.log("Ticket fetched:", response.data);
-    } catch (error) {
-      console.error(
-        "Error fetching ticket:",
-        error.response ? error.response.data : error.message
-      );
-    }
-  }
-
-  async getAllTickets() {
-    try {
-      const response = await axios.get(API_URL, this.getHeaders()); // Attach token as header here
-      console.log("All tickets:", response.data); 
+      console.log("Movie fetched:", response.data);
       return response.data
       
     } catch (error) {
       console.error(
-        "Error fetching all tickets:",
+        "Error fetching Movie:",
         error.response ? error.response.data : error.message
       );
     }
   }
 
-  async updateTicket(id, ticketData) {
+  async getAllMovies() {
+    try {
+      const response = await axios.get(API_URL, this.getHeaders()); // Attach token as header here
+      console.log("All Movies:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error(
+        "Error fetching all movies:",
+        error.response ? error.response.data : error.message
+      );
+    }
+  }
+
+  async updateMovie(id, movieData) {
     try {
       const response = await axios.put(
         `${API_URL}/${id}`,
-        ticketData,
+        movieData,
         this.getHeaders() // Attach token as header here
       );
-      console.log("Ticket updated:", response.data);
+      console.log("Movie updated:", response.data);
     } catch (error) {
       console.error(
-        "Error updating ticket:",
+        "Error updating Movie:",
         error.response ? error.response.data : error.message
       );
     }
   }
 
-  async deleteTicket(id) {
+  async deleteMovie(id) {
     try {
       const response = await axios.delete(
         `${API_URL}/${id}`,
         this.getHeaders() // Attach token as header here
       );
-      console.log("Ticket deleted:", response.data);
+      console.log("Movie deleted:", response.data);
     } catch (error) {
       console.error(
-        "Error deleting ticket:",
+        "Error deleting Movie:",
         error.response ? error.response.data : error.message
       );
     }
@@ -98,15 +98,15 @@ class TicketService {
 }
 
 // Example Usage
-const ticketService = new TicketService();
+const movieService = new MovieService();
 
 // Set the token (e.g., after login)
-ticketService.setToken(
-  "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJzdWIiOiJzYWNoaUBnbWFpbC5jb20iLCJpYXQiOjE3MzQ5NjczNDEsImV4cCI6MTczNDk2OTc0MX0.97-lOPRwGMScmgWHSm3JjO-dbQTjpJw8Dc2_vhRx8Gw"
+movieService.setToken(
+  "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJzdWIiOiJzYWNoaUBnbWFpbC5jb20iLCJpYXQiOjE3MzcyNjQ4NTksImV4cCI6MTczNzI2NzI1OX0.NaH9kBM-LgaKyiT1B6FyRBycKqnKmdRFB6NaVGZQN4w"
 );
 
 // Make API requests
 (async () => {
-  await ticketService.getAllTickets();
+  await movieService.getAllMovies();
 })();
-export default ticketService;
+export default movieService;
