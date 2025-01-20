@@ -17,14 +17,20 @@ async function signUp(userDetails) {
     throw error;
   }
 }
-
+function clearAuthToken() {
+  localStorage.removeItem("authToken");
+  console.log("authToken removed from localStorage");
+}
 async function signIn(credentials) {
   try {
     const response = await axios.post(`${API_BASE_URL}/signin`, credentials);
     console.log("Sign-In Successful:", response.data);
-    // for save token in local storage
-      // localStorage.setItem("authToken", response.data.token);
-      console.log(response.data.token)
+    clearAuthToken()
+       localStorage.setItem("authToken", response.data.token);
+       console.log("authToken saved to localStorage");
+  
+    console.log(response.data.token)
+    
     return response.data;
   } catch (error) {
     if (error.response) {
