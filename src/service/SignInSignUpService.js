@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8080/Ticket-booking/api/v1/auth"; 
+const API_BASE_URL = "https://www.dev.ticketbooking.tequilasl.com/Ticket-booking/api/v1/auth"; 
 
 
 async function signUp(userDetails) {
