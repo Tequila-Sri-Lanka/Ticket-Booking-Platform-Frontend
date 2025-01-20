@@ -42,6 +42,8 @@ class MovieService {
         this.getHeaders() // Attach token as header here
       );
       console.log("Movie fetched:", response.data);
+      return response.data
+      
     } catch (error) {
       console.error(
         "Error fetching Movie:",

@@ -38,6 +38,7 @@
           :key="item.id"
           :class="{ highlighted: highlightedIndex === index }"
           ref="carouselItems"
+          @click="currentCategory === 'movies' ? goToMovieDetails(item.id) : null"  
         >
           <img :src="item.image" :alt="item.image" class="item-poster" />
           <h3 class="item-title">{{ item.title }}</h3>
@@ -84,16 +85,37 @@ export default {
         if (token) {
           movieService.setToken(token);
         }
-        
-        const movies = await movieService.getAllMovies();
-        if (movies) {
-          this.items.movies = movies;
-          console.log("in homepage:",movies)
-        }
+
+//orginal
+
+        // const movies = await movieService.getAllMovies();
+        // if (movies) {
+        //   this.items.movies = movies;
+        //   console.log("in homepage:",movies)
+        // }
+
+
+//dummy images
+const movies = await movieService.getAllMovies();
+if (movies) {
+  // Set the image URL for each movie
+  this.items.movies = movies.map(movie => ({
+    ...movie,
+    image: "https://picsum.photos/200/300"
+  }));
+
+  console.log("in homepage:", this.items.movies);
+}
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
     },
+    goToMovieDetails(movieId) {
+      if (this.currentCategory === 'movies') {
+      console.log(movieId)
+      this.$router.push({ name: 'MovieDetails', params: { id: movieId } });
+    }
+  },
   setupObserver() {
     const options = {
       root: this.$refs.carousel,
