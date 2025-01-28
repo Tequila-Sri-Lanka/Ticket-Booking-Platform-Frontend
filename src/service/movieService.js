@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/Ticket-booking/api/v1/movies";
+const API_URL =
+  "http://www.dev.ticketbooking.service.tequilasl.com/Ticket-booking/api/v1/movies";
 
 class MovieService {
   constructor() {
